@@ -62,14 +62,16 @@ A distribution is anything that encapsulates the artifacts needed to deploy and 
 applications infrastructure. A distribution could take many forms but a compressed archive is one form. A `distribution` 
 can be sourced from, stored or moved to various locations such as an maven or ivy repository, an AWS S3 bucket, github, etc.
 
-A distribution could contain:
-- One or more deployable binaries (.jar, .war, .ear, etc.)
-- A docker image.
-- A docker file.
-- The coordinates of a doker image in a remote docker repository.
-- The scripts and configuration to [bake an AMI](https://medium.com/netflix-techblog/ami-creation-with-aminator-98d627ca37b0), 
+A distribution could contain one or more:
+- Deployable binaries (.jar, .war, .ear, etc.)
+- Docker images.
+- Docker files.
+- Cloudfoundry deployment manifests.
+- Google cloud deployment manager templates.  
+- Coordinates of docker images in a remote docker repository.
+- Scripts and configuration to [bake AMIs](https://medium.com/netflix-techblog/ami-creation-with-aminator-98d627ca37b0), 
 to run the application on AWS.
-- Multiple variants of an android application (.apk's targeting different devices)
+- Variants of an android application (.apk's targeting different devices)
 - Configuration scripts or instructions to provision the applications infrastructure and runtime
 - Configuration scripts or instructions to provision the "continuous integration profile" associated with the application. 
 

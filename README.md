@@ -1,1 +1,1 @@
-# gradle-application-plugin
+# gradle-deployment-plugin

@@ -1,0 +1,8 @@
+rootProject.name = 'gradle-deployment-plugin'
+
+include 'deployment-plugin'
+include 'aws-deployment-plugin'
+
+rootProject.children.each {
+    it.buildFileName = "${it.name}.gradle"
+}

@@ -8,16 +8,25 @@ A sample application on github (spring boot java 8)
     bin/application-<version>.war
     infrastructure/cf/AppServer.yaml //cloudformation template which can be parameterised for each environment
     ``` 
- - Applies both the `application-plugin` and the `aws-application-plugin` 
- - Can configure one or more logical environments to deploy the application to
- - Results has a set of working gradle tasks as follows:
-    - `uploadDistToS3`
-    - `createOrUpdate<environment>AppServerStack`
-    - `delete<environment>AppServerStack`
-    - `deploy<environment>Binary`
-    - `verify<environment>Health`
- 
-## Tech inception
+ - Applies both the `deployment-plugin` and the `aws-deployment-plugin` 
+ - Can deploy the app to one or more logical environments(`dev`, `test`, etc.)
+    - For a given environment, the app (and AWS infrastructure) can be deployed to one or more AWS regions. 
+
+## Release 1.1
+- Using the same sample application and logical environments, deploy the application to Google 
+container engine (using a kuberneates cluster)
+
+- Flesh out an example of doing a blue-green deployment with a load balancer (or maybe "ingress")
+    - SSL termination and load balanced
+  
+## Release 1.2
+- Google App Engine
+
+## Release 1.3
+
+- Docker image stored to a docker registry
+- Deployed to AWS ECS
+
 
 ##Gradle plugin implementation
 
@@ -31,8 +40,8 @@ configuration friendly syntax with labeled constructor arguments. These will tak
  classes.
 
 - Initial plugin architecture
-    - `application-plugin`
-    - `aws-application-plugin`
+    - `deployment-plugin`
+    - `aws-deployment-plugin`
 
 **Testing Guidelines**
 

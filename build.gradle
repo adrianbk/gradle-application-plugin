@@ -1,0 +1,7 @@
+subprojects {
+    repositories {
+        jcenter()
+    }
+
+    group = 'com.github.adrianbk'
+}

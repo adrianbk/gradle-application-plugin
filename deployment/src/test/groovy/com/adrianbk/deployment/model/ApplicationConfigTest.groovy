@@ -8,7 +8,7 @@ class ApplicationConfigTest extends Specification {
     @Unroll
     def "can not have an empty or blank application name"() {
         when:
-          new Application.Builder(name)
+          Application.Builder.of(name)
                   .distribution(Mock(Distribution))
                   .build()
 
@@ -23,7 +23,7 @@ class ApplicationConfigTest extends Specification {
 
     def "has a distribution"() {
         ADistribution distribution = new ADistribution()
-        Application application = new Application.Builder("name")
+        Application application = Application.Builder.of("name")
                 .distribution(distribution)
                 .build()
         expect:
@@ -33,7 +33,7 @@ class ApplicationConfigTest extends Specification {
 
     def "must have a distribution"() {
         when:
-          new Application.Builder("name").build()
+          Application.Builder.of("name").build()
 
         then:
           def ex = thrown(RuntimeException)
@@ -41,10 +41,10 @@ class ApplicationConfigTest extends Specification {
     }
 
     def "can not have duplicate environment names"() {
-        Application.Builder appBuilder = new Application.Builder("name")
+        Application.Builder appBuilder = Application.Builder.of("name")
                 .distribution(new ADistribution())
-                .environment(new ApplicationEnvironment(name: 'test'))
-                .environment(new ApplicationEnvironment(name: 'test'))
+                .environment(ApplicationEnvironment.Builder.of('test').build())
+                .environment(ApplicationEnvironment.Builder.of('test').build())
 
         when:
           appBuilder.build()
@@ -57,8 +57,8 @@ class ApplicationConfigTest extends Specification {
     def "can have multiple environments"() {
         Application.Builder appBuilder = new Application.Builder("name")
                 .distribution(Mock(Distribution))
-                .environment(new ApplicationEnvironment(name: 'dev'))
-                .environment(new ApplicationEnvironment(name: 'test'))
+                .environment(ApplicationEnvironment.Builder.of('dev').build())
+                .environment(ApplicationEnvironment.Builder.of('test').build())
 
         expect:
           appBuilder.build().environments.spliterator().getExactSizeIfKnown() == 2

@@ -36,8 +36,12 @@ public final class Application {
 
         private List<ApplicationEnvironment> environments = new ArrayList<>();
 
-        Builder(String name) {
+        private Builder(String name) {
             this.name = name;
+        }
+
+        public static Builder of(String name) {
+            return new Builder(name);
         }
 
         public Builder distribution(Distribution distribution) {

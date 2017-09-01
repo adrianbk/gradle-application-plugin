@@ -18,7 +18,19 @@ public class ApplicationEnvironment {
     }
 
     static class Builder {
-        private String name;
+        private final String name;
         private Iterable<Deployment> deployments;
+
+        private Builder(String name) {
+            this.name = name;
+        }
+
+        static Builder of(String name) {
+            return new Builder(name);
+        }
+
+        ApplicationEnvironment build() {
+            return new ApplicationEnvironment(this);
+        }
     }
 }

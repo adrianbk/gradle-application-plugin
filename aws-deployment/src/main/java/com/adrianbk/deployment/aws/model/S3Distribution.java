@@ -9,7 +9,7 @@ public class S3Distribution implements Distribution {
     private final Format format;
     private final VersionProvider versionProvider;
 
-    private S3Distribution(String bucket, String key, Format format, VersionProvider versionProvider) {
+    S3Distribution(String bucket, String key, Format format, VersionProvider versionProvider) {
         this.bucket = bucket;
         this.key = key;
         this.format = format;

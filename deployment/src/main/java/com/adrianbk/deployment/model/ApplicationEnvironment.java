@@ -4,33 +4,17 @@ public class ApplicationEnvironment {
     private final String name;
     private final Iterable<Deployment> deployments;
 
-    public ApplicationEnvironment(Builder builder) {
-        this.name = builder.name;
-        this.deployments = builder.deployments;
+    ApplicationEnvironment(String name, Iterable<Deployment> deployments) {
+        this.name = name;
+        this.deployments = deployments;
     }
 
     public String getName() {
         return name;
     }
 
-    public Iterable<Deployment> getDeployment() {
+    public Iterable<Deployment> getDeployments() {
         return deployments;
     }
 
-    static class Builder {
-        private final String name;
-        private Iterable<Deployment> deployments;
-
-        private Builder(String name) {
-            this.name = name;
-        }
-
-        static Builder of(String name) {
-            return new Builder(name);
-        }
-
-        ApplicationEnvironment build() {
-            return new ApplicationEnvironment(this);
-        }
-    }
 }

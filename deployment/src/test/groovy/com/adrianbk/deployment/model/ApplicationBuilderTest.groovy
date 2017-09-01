@@ -3,12 +3,12 @@ package com.adrianbk.deployment.model
 import spock.lang.Specification
 import spock.lang.Unroll
 
-class ApplicationConfigTest extends Specification {
+class ApplicationBuilderTest extends Specification {
 
     @Unroll
     def "can not have an empty or blank application name"() {
         when:
-          Application.Builder.of(name)
+          ApplicationBuilder.application(name)
                   .distribution(Mock(Distribution))
                   .build()
 
@@ -18,12 +18,11 @@ class ApplicationConfigTest extends Specification {
 
         where:
           name << ['       ', '']
-
     }
 
     def "has a distribution"() {
-        ADistribution distribution = new ADistribution()
-        Application application = Application.Builder.of("name")
+        Distribution distribution = Mock(Distribution)
+        Application application = ApplicationBuilder.application("name")
                 .distribution(distribution)
                 .build()
         expect:
@@ -33,7 +32,7 @@ class ApplicationConfigTest extends Specification {
 
     def "must have a distribution"() {
         when:
-          Application.Builder.of("name").build()
+          ApplicationBuilder.application("name").build()
 
         then:
           def ex = thrown(RuntimeException)
@@ -41,10 +40,10 @@ class ApplicationConfigTest extends Specification {
     }
 
     def "can not have duplicate environment names"() {
-        Application.Builder appBuilder = Application.Builder.of("name")
-                .distribution(new ADistribution())
-                .environment(ApplicationEnvironment.Builder.of('test').build())
-                .environment(ApplicationEnvironment.Builder.of('test').build())
+        ApplicationBuilder appBuilder = ApplicationBuilder.application("name")
+                .distribution(Mock(Distribution))
+                .environment(ApplicationEnvironmentBuilder.of('test').build())
+                .environment(ApplicationEnvironmentBuilder.of('test').build())
 
         when:
           appBuilder.build()
@@ -55,16 +54,12 @@ class ApplicationConfigTest extends Specification {
     }
 
     def "can have multiple environments"() {
-        Application.Builder appBuilder = new Application.Builder("name")
+        ApplicationBuilder appBuilder = ApplicationBuilder.application("name")
                 .distribution(Mock(Distribution))
-                .environment(ApplicationEnvironment.Builder.of('dev').build())
-                .environment(ApplicationEnvironment.Builder.of('test').build())
+                .environment(ApplicationEnvironmentBuilder.of('dev').build())
+                .environment(ApplicationEnvironmentBuilder.of('test').build())
 
         expect:
           appBuilder.build().environments.spliterator().getExactSizeIfKnown() == 2
-    }
-
-
-    class ADistribution implements Distribution {
     }
 }

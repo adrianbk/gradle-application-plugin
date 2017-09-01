@@ -30,7 +30,8 @@ container engine (using a kuberneates cluster)
 
 ##Gradle plugin implementation
 
-- **language**: Java 1.8. Kotlin would be ideal but as of Gradle 4.1 plugin classes written in Kotlin are not seamlessly 
+### language
+__Java 1.8__. Kotlin would be ideal but as of Gradle 4.1 plugin classes written in Kotlin are not seamlessly 
 supported by the IDE it's not a good build authoring experience.
 
 - Core model classes must be immutable and should not be exposed or configured in build scripts. 
@@ -42,6 +43,22 @@ configuration friendly syntax with labeled constructor arguments. These will tak
 - Initial plugin architecture
     - `deployment-plugin`
     - `aws-deployment-plugin`
+    
+- Build author interface
+ 
+  All configuration will be with direct java class use. This may be through builders or utility methods but the key point
+  is that all configuration is statically typed and well defined. In Gradle land this could be build scripts (groovy/kotlin) 
+  or plugin classes (java, groovy, kotlin). Having a programmable interface like this means that the full expressiveness of 
+  whichever programming language is being used can be leveraged.
+  
+  An all encompassing gradle plugin extension to provide a groovy DSL for configuration will not be be build. 
+  A single, simple extension may be used as the entry point. Something along the lines of: 
+  
+    ```groovy
+    deployment {
+            applications = [...]
+    }
+    ```
 
 **Testing Guidelines**
 
@@ -53,4 +70,5 @@ configuration friendly syntax with labeled constructor arguments. These will tak
 
 - Avoid the use of internal/private gradle classes.
 - Target gradle 4.x + 
+
 

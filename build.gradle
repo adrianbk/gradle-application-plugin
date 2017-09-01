@@ -3,5 +3,6 @@ subprojects {
         jcenter()
     }
 
-    group = 'com.github.adrianbk'
+    group = 'com.adrianbk'
+
 }

@@ -29,5 +29,5 @@ jobs:
           command: ./gradlew test
 
       - run:
-          name: Test
+          name: IntegTest
           command: ./gradlew integTest

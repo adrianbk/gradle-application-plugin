@@ -1,5 +1,7 @@
 package com.adrianbk.deployment.aws
 
+import com.adrianbk.deployment.aws.model.S3DistributionBuilder
+import com.adrianbk.deployment.model.ApplicationEnvironmentBuilder
 import org.gradle.testkit.runner.GradleRunner
 import org.gradle.testkit.runner.TaskOutcome
 import org.junit.Rule
@@ -22,11 +24,13 @@ ${applyPlugin()}
 
 import com.adrianbk.deployment.model.ApplicationBuilder;
 import com.adrianbk.deployment.aws.model.S3DistributionBuilder;
+import static ${ApplicationEnvironmentBuilder.name}.createEnvironment
+import static ${S3DistributionBuilder.name}.create3Distribution
 
 Application app = ApplicationBuilder
       .application("name")
-        .distribution(S3DistributionBuilder.s3Distribution('someBucket', 'someKey').build())
-        .environment(ApplicationEnvironmentBuilder.of('dev').build())
+        .distribution(create3Distribution('someBucket', 'someKey').build())
+        .environment(createEnvironment('dev').build())
         .build()
 
 println app

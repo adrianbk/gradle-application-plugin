@@ -12,7 +12,7 @@ public final class ApplicationEnvironmentBuilder {
         this.deployments = new ArrayList<>();
     }
 
-    public static ApplicationEnvironmentBuilder of(String name) {
+    public static ApplicationEnvironmentBuilder createEnvironment(String name) {
         return new ApplicationEnvironmentBuilder(name);
     }
 

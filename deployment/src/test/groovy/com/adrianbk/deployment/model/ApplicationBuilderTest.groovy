@@ -3,6 +3,8 @@ package com.adrianbk.deployment.model
 import spock.lang.Specification
 import spock.lang.Unroll
 
+import static com.adrianbk.deployment.model.ApplicationEnvironmentBuilder.createEnvironment
+
 class ApplicationBuilderTest extends Specification {
 
     @Unroll
@@ -42,8 +44,8 @@ class ApplicationBuilderTest extends Specification {
     def "can not have duplicate environment names"() {
         ApplicationBuilder appBuilder = ApplicationBuilder.application("name")
                 .distribution(Mock(Distribution))
-                .environment(ApplicationEnvironmentBuilder.of('test').build())
-                .environment(ApplicationEnvironmentBuilder.of('test').build())
+                .environment(createEnvironment('test').build())
+                .environment(createEnvironment('test').build())
 
         when:
           appBuilder.build()
@@ -56,8 +58,8 @@ class ApplicationBuilderTest extends Specification {
     def "can have multiple environments"() {
         ApplicationBuilder appBuilder = ApplicationBuilder.application("name")
                 .distribution(Mock(Distribution))
-                .environment(ApplicationEnvironmentBuilder.of('dev').build())
-                .environment(ApplicationEnvironmentBuilder.of('test').build())
+                .environment(createEnvironment('dev').build())
+                .environment(createEnvironment('test').build())
 
         expect:
           appBuilder.build().environments.spliterator().getExactSizeIfKnown() == 2

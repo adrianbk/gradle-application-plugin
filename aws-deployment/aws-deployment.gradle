@@ -13,6 +13,8 @@ testSets {
     integTest
 }
 
+check.dependsOn integTest
+
 dependencies {
     compile project(":deployment")
 

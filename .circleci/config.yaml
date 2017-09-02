@@ -24,4 +24,10 @@ jobs:
             - ~/.m2
           key: v1-dependencies-{{ checksum "build.gradle" }}
 
-      - run: ./gradlew test integTest
+      - run:
+          name: Test
+          command: ./gradlew test
+
+      - run:
+          name: Test
+          command: ./gradlew integTest

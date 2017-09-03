@@ -6,7 +6,7 @@ class DeploymentBuilderTest extends Specification {
 
     def "can have multiple deployments"() {
         expect:
-          DeploymentBuilder.of(Mock(Distribution))
+          DeploymentBuilder.deployment(Mock(Distribution))
                   .infrastructure(Mock(InfrastructureComponent))
                   .infrastructure(Mock(InfrastructureComponent))
                   .build().getInfrastructureComponents()

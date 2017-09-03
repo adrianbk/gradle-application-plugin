@@ -26,6 +26,11 @@ public class ApplicationBuilder {
         return this;
     }
 
+    public ApplicationBuilder environment(ApplicationEnvironment environment) {
+        environments.add(environment);
+        return this;
+    }
+
     public Application build() {
         validate();
         return new Application(this);
@@ -53,10 +58,5 @@ public class ApplicationBuilder {
                 throw new RuntimeException(String.format("There cannot be more than one environment with the name '%s'", k));
             }
         });
-    }
-
-    public ApplicationBuilder environment(ApplicationEnvironment environment) {
-        environments.add(environment);
-        return this;
     }
 }

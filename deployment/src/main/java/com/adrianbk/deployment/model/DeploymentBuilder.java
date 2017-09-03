@@ -12,7 +12,7 @@ public class DeploymentBuilder {
         this.infrastructureComponents = new ArrayList<>();
     }
 
-    public static DeploymentBuilder of(Distribution distribution) {
+    public static DeploymentBuilder deployment(Distribution distribution) {
         return new DeploymentBuilder(distribution);
     }
 

@@ -13,7 +13,7 @@ public final class S3DistributionBuilder {
         this.key = key;
     }
 
-    public static S3DistributionBuilder create3Distribution(String bucket, String key) {
+    public static S3DistributionBuilder s3Distribution(String bucket, String key) {
         return new S3DistributionBuilder(bucket, key);
     }
 

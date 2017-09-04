@@ -21,6 +21,17 @@ public class CloudFormationStackTaskGenerator implements InfrastructureTaskGener
 
     @Override
     public void generate(InfrastructureTaskGenerationSpec taskGenerationSpec) {
+
+        //Create stack
+        //Delete stack
+
+        //Create or update stack
+
+
+        //Create stack changeset
+        //Execute stack changeset
+        //Delete stack changeset
+
         taskGenerationSpec.getTaskContainer().create("someTask", new Action<Task>() {
             @Override
             public void execute(Task task) {

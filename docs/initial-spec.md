@@ -1,39 +1,34 @@
-# Gradle Application Plugin
+# Gradle Deployment Plugin
 
 ## Overall goal
 
-The propose of this plugin is to provide a mechanism to strongly model software applications and to provide a set 
-of gradle tasks to:
+The propose of this plugin is to provide a mechanism to strongly model one or more software applications and to derive 
+a set of gradle tasks to:
 
-1. Provision or configure the infrastructure, environments and runtimes to run the application.
-2. Deploy the application to one or more environments.
-3. Create or configure the continuous integration environment used by the application.
+1. Provision or configure the infrastructure, environments and runtimes to run those application.
+2. Deploy those applications to one or more environments.
+3. Create or configure the continuous integration environment used by those applications.
 
-This plugin also aims to be extendable to to facilitate different, application types, distribution types, 
-infrastructure providers and runtimes.
-
+This plugin also aims to provide a base for which other plugins can build upon to facilitate different, application types, 
+distribution types, infrastructure providers and runtimes.
 
 ## Motivations
 
-Often, a mix off tooling and languages are required to successfully deploy an application into a real environment. 
-This could be CLI tools, bash or python scripts and configuration management tools (Chef, Puppet, Ansible, etc.). Mixing 
+Often, a mix off tooling and languages are required to successfully deploy an application into real environments. 
+This could include CLI tools, bash or python scripts and configuration management tools (Chef, Puppet, Ansible, etc.). Mixing 
 tooling and languages like this has many obvious downsides and many modern projects will aim to have one tool to carry 
-out all build, automation and deployment tasks. Gradle is very well suited tool to being that unified automation tool. 
+out all build, automation and deployment tasks. Gradle is very well suited to being that unified automation tool. 
 
-One of the primary motivations here is to provide a base, which can be extended upon, to deploy almost 
-anything using Gradle - admittedly a daring goal.
-
-
-When is comes to deployment, there is tooling out there to deploy to specific infrastructures and platforms, 
-like the [Gradle App Engine Plugin](https://cloud.google.com/appengine/docs/standard/java/tools/gradle) which can work
-very well for happy path scenarios like when a single war file being deployed to a single platform. It feels like some of the 
-existing deployment tools do not provide for some broader concerns like:
+Some existing gradle plugins, work very well and provide the ability to deploy applications to specific infrastructures 
+and platforms (e.g. the [Gradle App Engine Plugin](https://cloud.google.com/appengine/docs/standard/java/tools/gradle)). 
+A lot of these plugins fail to take the following into account: 
  - Applications usually have more than one environment.
- - Applications can be deployed differently under different circumstances (blue-green vs rolling) 
+ - Applications can be deployed differently under different circumstances (blue-green vs rolling).
  - Applications can have infrastructural components.
- - Applications could be deployed to more than one platform, simultaneously. 
+ - Applications could be deployed to more than one platform, simultaneously.
  - DSL's and static markup configuration for deployment can be limiting, e.g. some piece of deployment configuration
  must be sourced at deployment time. 
+ - The source repository which a
 
 
 ## Nomenclature
